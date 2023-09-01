@@ -1,1 +1,42 @@
+name: Sync Discovered API with ApiConnect
 
+on: [pull_request, workflow_dispatch, push]
+
+env:
+  API_HOST: d-h01.apiconnect.dev.automation.ibm.com
+  PROVIDER_ORG: niraimathi
+  API_FILE: gmail-api.json
+
+jobs:
+  check_apifiles_job:
+    runs-on: 'ubuntu-20.04'
+    # Declare outputs for next jobs
+    outputs:
+      apifiles_changed: ${{ steps.check_files_changed.outputs.apifile_updates }}
+      action_changed: ${{ steps.check_files_changed.outputs.action_updates }}
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
+    - name: Check API File changed
+      id: check_apifile_changed
+      run: |
+        echo "apifile_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep $API_FILE | xargs)" >> $GITHUB_OUTPUT
+        echo "action_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep discover-api.yml | xargs)" >> $GITHUB_OUTPUT
+  run-discovery:
+    runs-on: ubuntu-latest
+    needs: [ check_apifiles_job ]
+    if: ${{ (needs.check_apifiles_job.outputs.apifiles_changed) || (needs.check_apifiles_job.outputs.action_changed) }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ruairi-hayes/apic-discovery-action@main
+      id: discover-apis
+      with:
+        api_host: ${{ env.API_HOST }}
+        provider_org: ${{ env.PROVIDER_ORG }}
+        api_key: ${{ secrets.apicApikey }}
+        api_file: ${{ env.API_FILE }}
+        resync_check: ${{ needs.check_apifiles_job.outputs.action_changed && true || false }}
+    - name: Display the action-result
+      run: |
+        echo "Result of the action: ${{ steps.discover-apis.outputs.action-result }}"
