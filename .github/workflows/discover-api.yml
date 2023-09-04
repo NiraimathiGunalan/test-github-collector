@@ -39,5 +39,5 @@ jobs:
         resync_check: ${{ needs.check_apifiles_job.outputs.action_changed && true || false }}
     - name: Display the action-result
       run: |
-        echo "needs.check_apifiles_job"
+        echo "${{needs.check_apifiles_job}}"
         echo "Result of the action: ${{ steps.discover-apis.outputs.action-result }}"
