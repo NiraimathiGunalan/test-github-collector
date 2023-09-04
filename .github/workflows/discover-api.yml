@@ -25,7 +25,6 @@ jobs:
         echo "action_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep discover-api.yml | xargs)" >> $GITHUB_OUTPUT
         echo "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep $API_FILE | xargs)"
         echo "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep discover-api.yml | xargs)"
-        echo "${{GITHUB_OUTPUT}}"
         echo "${{apifiles_changed}}"
         echo ${{action_changed}}"
   run-discovery:
