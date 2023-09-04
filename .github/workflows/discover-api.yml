@@ -29,7 +29,7 @@ jobs:
     if: ${{ (needs.check_apifiles_job.outputs.apifiles_changed) || (needs.check_apifiles_job.outputs.action_changed) }}
     steps:
     - uses: actions/checkout@v3
-    - uses: ruairi-hayes/apic-discovery-action@ng/mainOne
+    - uses: ruairi-hayes/apic-discovery-action@ng/main
       id: discover-apis
       with:
         api_host: ${{ env.API_HOST }}
