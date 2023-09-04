@@ -3,8 +3,8 @@ openapi: 3.0.0
 info:
   title: gmail
   description: Optional multiline or single-liner description in [CommonMark](http://commonmark.org/help/)
-    or HTML. Adding more
-  version: 0.3.5
+    or HTML. Checking the yaml status
+  version: 0.3.6
 servers:
 - url: https://climbon.com/trails
   description: Optional server description, e.g. Main (production) server
