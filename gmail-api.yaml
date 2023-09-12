@@ -4,7 +4,7 @@ info:
   title: gmail
   description: Optional multiline or single-liner description in [CommonMark](http://commonmark.org/help/)
     or HTML. Checking the yaml status working or not
-  version: 0.5.1
+  version: 0.5.2
 servers:
 - url: https://climbon.com/trails
   description: Optional server description, e.g. Main (production) server
