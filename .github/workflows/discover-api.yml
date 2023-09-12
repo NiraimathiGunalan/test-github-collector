@@ -5,7 +5,7 @@ on: [pull_request, workflow_dispatch, push]
 env:
   API_HOST: d-j02.apiconnect.dev.automation.ibm.com
   PROVIDER_ORG: niraimathi
-  API_FILE: gmail-api.yaml
+  API_FILES: gmail-api.yaml
 
 jobs:
   check_apifiles_job:
