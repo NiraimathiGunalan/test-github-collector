@@ -3,7 +3,7 @@ name: Sync Discovered API with ApiConnect
 on: [pull_request, workflow_dispatch, push]
 
 env:
-  API_HOST: d-h01.apiconnect.dev.automation.ibm.com
+  API_HOST: d-j02.apiconnect.dev.automation.ibm.com
   PROVIDER_ORG: niraimathi
   API_FILE: gmail-api.yaml
 
