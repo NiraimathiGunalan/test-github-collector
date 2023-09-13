@@ -21,7 +21,7 @@ jobs:
     - name: Check API File changed
       id: check_apifiles_changed
       run: |
-        echo "apifiles_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep $API_FILES | xargs)" >> $GITHUB_OUTPUT
+        echo "apifiles_updates=$($API_FILES | grep -q git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUTPUT
         echo "action_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep discover-api.yml | xargs)" >> $GITHUB_OUTPUT
   run-discovery:
     runs-on: ubuntu-latest
