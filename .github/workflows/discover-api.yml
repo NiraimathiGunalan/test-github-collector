@@ -27,7 +27,7 @@ jobs:
     - name: Changed API File Name
       id: changed_filename
       run: |
-        echo "api_file=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} )" >> $GITHUB_OUTPUT
+        echo "api_file=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | xargs)" >> $GITHUB_OUTPUT
         echo "apifiles_env=$(echo $API_FILES)" >> $GITHUB_OUTPUT
     - name: Check API Folders changed
       id: check_apifolders_changed
@@ -41,7 +41,7 @@ jobs:
     - name: Mendax Loop through numbers
       id: loop
       run: |
-          for i in ${{ needs.check_changes_job.outputs.apifile }}
+          for i in toJSON(${{ needs.check_changes_job.outputs.apifile }})
           do
             echo "Mendax Current number: $i"
           done
