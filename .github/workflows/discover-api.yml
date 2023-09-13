@@ -36,7 +36,7 @@ jobs:
   run-discovery:
     runs-on: ubuntu-latest
     needs: [ check_changes_job ]
-    if: ${{ (contains(needs.check_changes_job.outputs.apifiles_env,needs.check_changes_job.outputs.changed_filename)) || (needs.check_changes_job.outputs.action_changed) || (needs.check_changes_job.outputs.folder_updates) }}
+    if: ${{ (contains(needs.check_changes_job.outputs.apifiles_env,needs.check_changes_job.outputs.changed_filename)) || (needs.check_changes_job.outputs.action_changed) || (needs.check_changes_job.outputs.folder_changed) }}
     steps:
     - uses: actions/checkout@v3
     - uses: ruairi-hayes/apic-discovery-action@ng/main
