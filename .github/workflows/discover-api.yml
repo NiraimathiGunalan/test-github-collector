@@ -33,6 +33,13 @@ jobs:
       id: check_apifolders_changed
       run: |
         echo "folder_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep $API_FOLDERS | xargs)" >> $GITHUB_OUTPUT
+    - name: Mendax Loop through numbers
+      id: loop
+      run: |
+          for i in 1 2 3 4 5
+          do
+            echo "Mendax Current number: $i"
+          done
   run-discovery:
     runs-on: ubuntu-latest
     needs: [ check_changes_job ]
