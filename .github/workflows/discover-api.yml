@@ -52,7 +52,7 @@ jobs:
   run-discovery:
     runs-on: ubuntu-latest
     needs: [ check_changes_job, check_isMultiple ]
-    if: ${{ (needs.check_changes_job.outputs.action_changed) || (needs.check_changes_job.outputs.folder_changed) || (needs.check_isMultiple.outputs.file_changed > 1) }}
+    if: ${{ (needs.check_changes_job.outputs.action_changed) || (needs.check_changes_job.outputs.folder_changed) || (needs.check_isMultiple.outputs.file_changed > 0) }}
     steps:
     - uses: actions/checkout@v3
     - uses: ruairi-hayes/apic-discovery-action@ng/main
