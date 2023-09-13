@@ -46,7 +46,6 @@ jobs:
           do
             echo "Mendax Current number: $i"
             echo "(${{ needs.check_changes_job.outputs.apifiles_env }} == *$i*) && true || false"
-            echo "${{ contains(needs.check_changes_job.outputs.apifiles_env,$i) }}"
           done
   run-discovery:
     runs-on: ubuntu-latest
