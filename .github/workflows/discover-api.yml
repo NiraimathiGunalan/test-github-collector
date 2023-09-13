@@ -22,6 +22,9 @@ jobs:
         run: |
           echo "api_file=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep "" | xargs)" >> $GITHUB_OUTPUT
           echo "apifiles_env=$(echo $API_FILES)" >> $GITHUB_OUTPUT
+          echo "Entered"
+          echo "${{ steps.changed_filename.api_file }}"
+          echo "${{ steps.changed_filename.apifiles_env }}"
   check_apifiles_job:
     runs-on: 'ubuntu-20.04'
     needs: [ get_changed_file ]
