@@ -18,8 +18,8 @@ jobs:
       - name: Changed API File Name
         id: changed_filename
         run: |
-          echo "api_file=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUTPUT
-          echo "apifiles_env=$($API_FILES)" >> $GITHUB_OUTPUT
+          echo "api_file=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | xargs)" >> $GITHUB_OUTPUT
+          echo "apifiles_env=$(echo $API_FILES)" >> $GITHUB_OUTPUT
   check_apifiles_job:
     runs-on: 'ubuntu-20.04'
     needs: [ get_changed_file ]
