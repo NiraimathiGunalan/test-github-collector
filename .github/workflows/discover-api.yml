@@ -36,12 +36,14 @@ jobs:
   check_isMultiple:
     runs-on: ubuntu-latest
     needs: [ check_changes_job ]
+    if: ${{ needs.check_changes_job.outputs.apifile }}
     steps:
     - uses: actions/checkout@v3
     - name: Mendax Loop through numbers
       id: loop
       run: |
-          for i in toJSON(${{ needs.check_changes_job.outputs.apifile }})
+          apifiles = toJSON(${{ needs.check_changes_job.outputs.apifile }})
+          for i in apifiles
           do
             echo "Mendax Current number: $i"
           done
