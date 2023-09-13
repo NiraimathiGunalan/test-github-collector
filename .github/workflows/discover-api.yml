@@ -42,7 +42,7 @@ jobs:
     - name: Mendax Loop through numbers
       id: loop
       run: |
-          for i in ${{ needs.check_changes_job.outputs.apifile }}
+          for i in ${{ needs.check_changes_job.outputs.changed_filename }}
           do
             echo "Mendax Current number: $i"
           done
