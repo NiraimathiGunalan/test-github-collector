@@ -44,15 +44,15 @@ jobs:
     - name: Check API files Changed
       id: check_apifiles_changed
       run: |
+          count=0
           for i in ${{ needs.check_changes_job.outputs.changed_filename }}
           do
-            echo "Mendax Current number: $i"
-            echo "apifile_updates=(${{ needs.check_changes_job.outputs.apifiles_env }} == *$i*) && true || false" >> $GITHUB_OUTPUT
+            echo "apifile_updates=(${{ needs.check_changes_job.outputs.apifiles_env }} == *$i*) && count++ || count" >> $GITHUB_OUTPUT
           done
   run-discovery:
     runs-on: ubuntu-latest
     needs: [ check_changes_job, check_isMultiple ]
-    if: ${{ (needs.check_changes_job.outputs.action_changed) || (needs.check_changes_job.outputs.folder_changed) || (needs.check_isMultiple.outputs.file_changed) }}
+    if: ${{ (needs.check_changes_job.outputs.action_changed) || (needs.check_changes_job.outputs.folder_changed) || (needs.check_isMultiple.outputs.file_changed > 1) }}
     steps:
     - uses: actions/checkout@v3
     - uses: ruairi-hayes/apic-discovery-action@ng/main
