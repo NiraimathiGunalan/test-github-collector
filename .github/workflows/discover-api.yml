@@ -28,7 +28,7 @@ jobs:
     if: ${{ contains(needs.get_changed_file.outputs.apifiles_env,needs.get_changed_file.outputs.changed_filename) }}
     # Declare outputs for next jobs
     outputs:
-      apifiles_changed: ${{ steps.check_apifiles_changed.outputs.apifiles_updates }}
+      apifiles_changed: ${{ needs.get_changed_file.outputs.changed_filename }}
       action_changed: ${{ steps.check_apifiles_changed.outputs.action_updates }}
     steps:
     - uses: actions/checkout@v3
@@ -37,7 +37,6 @@ jobs:
     - name: Check API File changed
       id: check_apifiles_changed
       run: |
-        echo "apifiles_updates=$(needs.get_changed_file.outputs.changed_filename)" >> $GITHUB_OUTPUT
         echo "action_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep discover-api.yml | xargs)" >> $GITHUB_OUTPUT
   run-discovery:
     runs-on: ubuntu-latest
