@@ -37,7 +37,7 @@ jobs:
     - name: Check API File changed
       id: check_apifiles_changed
       run: |
-        echo "needs.get_changed_file.outputs.changed_filename"
+        echo "${{needs.get_changed_file.outputs.changed_filename}}"
         echo "action_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep discover-api.yml | xargs)" >> $GITHUB_OUTPUT
   run-discovery:
     runs-on: ubuntu-latest
