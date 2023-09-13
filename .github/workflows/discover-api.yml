@@ -21,7 +21,7 @@ jobs:
   check_apifiles_job:
     runs-on: 'ubuntu-20.04'
     needs: [ get_changed_file ]
-    if: ${{ contains(env.API_FILES,needs.get_changed_file.outputs.changed_filename) }}
+    if: ${{ contains(API_FILES,needs.get_changed_file.outputs.changed_filename) }}
     # Declare outputs for next jobs
     outputs:
       apifiles_changed: ${{ steps.check_apifiles_changed.outputs.apifiles_updates }}
