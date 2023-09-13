@@ -8,8 +8,20 @@ env:
   API_FILES: gmail-api.yaml,mit-api.json
 
 jobs:
+  get_changed_file:
+    runs-on: ubuntu-latest
+    outputs:
+      changed_filename: ${{ steps.changed_filename.api_file }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Changed API File Name
+        id: changed_filename
+        run: |
+          echo "api_file=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUTPUT
   check_apifiles_job:
     runs-on: 'ubuntu-20.04'
+    needs: [ get_changed_file ]
+    if: ${{ contains($API_FILES,needs.get_changed_file.outputs.changed_filename) }}
     # Declare outputs for next jobs
     outputs:
       apifiles_changed: ${{ steps.check_apifiles_changed.outputs.apifiles_updates }}
@@ -21,7 +33,7 @@ jobs:
     - name: Check API File changed
       id: check_apifiles_changed
       run: |
-        echo "apifiles_updates=$($API_FILES | grep -q git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUTPUT
+        echo "apifiles_updates=$(needs.get_changed_file.outputs.changed_filename)" >> $GITHUB_OUTPUT
         echo "action_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep discover-api.yml | xargs)" >> $GITHUB_OUTPUT
   run-discovery:
     runs-on: ubuntu-latest
