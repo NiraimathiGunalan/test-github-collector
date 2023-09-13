@@ -51,7 +51,6 @@ jobs:
               echo "apifile_updates=${{ needs.check_changes_job.outputs.apifiles_env }} " >> $GITHUB_OUTPUT
             fi
           done
-          echo "$
   run-discovery:
     runs-on: ubuntu-latest
     needs: [ check_changes_job, check_isMultiple ]
