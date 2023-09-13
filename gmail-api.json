@@ -3,7 +3,7 @@
   "info": {
       "title": "gmail",
       "description": "Optional multiline or single-liner description in [CommonMark](http://commonmark.org/help/) or HTML. Adding more",
-      "version": "0.3.1"
+      "version": "0.3.2"
   },
   "servers": [
       {
