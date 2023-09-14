@@ -47,7 +47,7 @@ jobs:
           count=0
           for i in ${{ needs.check_changes_job.outputs.changed_filename }}
           do
-            if [[${{ needs.check_changes_job.outputs.apifiles_env }} == *$i* ]]; then
+            if [[${{ needs.check_changes_job.outputs.apifiles_env }} =~ $i ]]; then
               echo "apifile_updates=${{ needs.check_changes_job.outputs.apifiles_env }} " >> $GITHUB_OUTPUT
             fi
           done
