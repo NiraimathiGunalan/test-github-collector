@@ -44,13 +44,9 @@ jobs:
     - name: Check API files Changed
       id: check_apifiles_changed
       run: |
-          count=0
           for i in ${{ needs.check_changes_job.outputs.changed_filename }}
           do
-            if [["${{ needs.check_changes_job.outputs.apifiles_env }}" =~ "$i" ]]; then
-              echo "file changed: $i"
-              echo "apifile_updates=${{ needs.check_changes_job.outputs.apifiles_env }} " >> $GITHUB_OUTPUT
-            fi
+            echo "apifile_updates=${{ needs.check_changes_job.outputs.apifiles_env }} && true " >> $GITHUB_OUTPUT
           done
   run-discovery:
     runs-on: ubuntu-latest
