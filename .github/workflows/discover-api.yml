@@ -44,6 +44,7 @@ jobs:
     - name: Check API files Changed
       id: check_apifiles_changed
       run: |
+          echo "apifile_updates=false" >> $GITHUB_OUTPUT
           for i in ${{ needs.check_changes_job.outputs.changed_filename }}
           do
             echo "$i"
