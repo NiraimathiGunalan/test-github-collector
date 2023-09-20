@@ -89,7 +89,7 @@ The following parameters are always required:
  - API_FILES - One or more file names of the APIs to sync with apiconnect discovery repo separated by comma.<br /> &nbsp; &nbsp; &nbsp; Example : `gmail-api.json,gmail-api.yaml,mit-api.json,APIfolder/petstore-exp.json`
  - API_FOLDERS - One or more folder names containing APIs to sync with apiconnect discovery repo separated by comma. <br /> &nbsp; &nbsp; &nbsp; Example : `APIFiles,APIFolders`
  - apikey - An API Key can be obtained from the api-manager for the user who have access to post teh API.<br /> 
-&nbsp; &nbsp; &nbsp; Get the API key from the api connect Manager from the link in the following structure - `http://{api-host}/manager/auth/manager/sign-in/?from=TOOLKIT`<br />  
+&nbsp; &nbsp; &nbsp; Get the API key from the api connect Manager from the link in the following structure - `http://{api-host}/manager/auth/manager/sign-in/?from=TOOLKIT`
 &nbsp; &nbsp; &nbsp; (typically used with an OIDC user registry like IBM Verify).<br />  
 &nbsp; &nbsp; &nbsp; It is good practice to store any sensitive data like the apikey as a github action secret. See [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for more details.<br />  
 &nbsp; &nbsp; &nbsp; For the sample above the github secret should be called `apicApikey` as it will need to match the following templated value ${{ secrets.apicApikey }} 
