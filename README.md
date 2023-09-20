@@ -10,10 +10,6 @@ as required to be managed by Apiconnect through their entire lifecycle.
 
 See [action.yml](action.yml)
 
-The format of the API documents can be json or yaml. Among the parameters used, either API_FILES or API_FOLDERS needs to be supplied according to how the API documents sent.
-The APIs can be sent to the API connect discovery service in any one of the following type - single/multiple documents or folder/folders with APIs documents in it. 
-Single and Multiple documents will be supplied through API_FILES param and Single and Multiple folders with many API files inside will be supplied through API_FOLDERS param.
-
 ## Parameters required for apic-discovery-action
 
 The following parameters are always required:
@@ -23,11 +19,10 @@ The following parameters are always required:
  - API_FILES - One or more file names of the APIs to sync with apiconnect discovery repo separated by comma.<br /> &nbsp; &nbsp; &nbsp; Example : `gmail-api.json,gmail-api.yaml,mit-api.json,APIfolder/petstore-exp.json`
  - API_FOLDERS - One or more folder names containing APIs to sync with apiconnect discovery repo separated by comma. <br /> &nbsp; &nbsp; &nbsp; Example : `APIFiles,APIFolders`
  - apikey - An API Key can be obtained from the api-manager for the user who have access to post teh API.<br /> 
-&nbsp; &nbsp; &nbsp; Get the API key from the APIC Manager from the link in the following structure - `http://{api-host}/manager/auth/manager/sign-in/?from=TOOLKIT` (typically used with an OIDC user registry like IBM Verify).<br />  
-&nbsp; &nbsp; &nbsp; It is good practice to store any sensitive data like the apikey as a github action secret. See [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for more details.<br />  
-&nbsp; &nbsp; &nbsp; For the sample below the github secret should be called `apicApikey` as it will need to match the following templated value ${{ secrets.apicApikey }} 
+&nbsp; &nbsp; &nbsp; Get the API key from the APIC Manager from the link in the following structure - `http://{api-host}/manager/auth/manager/sign-in/?from=TOOLKIT` (typically used with an OIDC user registry like IBM Verify). It is good practice to store any sensitive data like the apikey as a github action secret. See [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for more details. For the sample below the github secret should be called `apicApikey` as it will need to match the following templated value ${{ secrets.apicApikey }} 
  - resync_check: Indicates if changes to the action like at initial creation should trigger a api-file sync. 
 
+The format of the API documents can be json or yaml. Among the parameters used, either API_FILES or API_FOLDERS needs to be supplied according to how the API documents sent. The APIs can be sent to the API connect discovery service in any one of the following type - single/multiple documents or folder/folders with APIs documents in it. Single and multiple documents will be supplied through API_FILES param and single and multiple folders with many API files inside will be supplied through API_FOLDERS param.<br /> 
 To send the documents, create the workflow in your GitHub repository similar to the sample one below
 
 To create the workflow action in your github repository do the following
@@ -95,13 +90,11 @@ jobs:
         echo "Result of the action: ${{ steps.discover-apis.outputs.action-result }}"
 ```
 
-In the above yml content, env and jobs are described to send API documents. 
-The job works as follows, where on a push commit to the github repo the specified `api_files` will be sent to the discovery service repo of the given `provider_org` at location `api_host` using the  
-`api_key` to authenticate with the discovery service. 
-The job will only send the files to the discovery service in the case where the any one of the file in the mentioned has been updated and changed in the commit,
-or when you first create or update the `discover-api.yml` file.
-API_FILES can be replaced with API_FOLDERS when the entire folder/folders needs to be sent.
-The content can be modified according to the test requirement for sending the APIs
+In the above yml content, env and jobs are described to send API documents.<br /> 
+The job works as follows, where on a push commit to the github repo the specified `api_files` will be sent to the discovery service repo of the given `provider_org` at location `api_host` using the `api_key` to authenticate with the discovery service.<br /> 
+The job will only send the files to the discovery service in the case where any one of the mentioned file has been updated and changed in the commit,
+or when you first create or update the `discover-api.yml` file.<br /> 
+API_FILES can be replaced with API_FOLDERS when the entire folder/folders needs to be sent. The content can be modified according to the test requirement for sending the APIs
 
 Please refer [here](https://github.com/ibm-apiconnect/apic-discovery-test) which have a working example of the test repo to be created like.
 
