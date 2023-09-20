@@ -14,12 +14,12 @@ See [action.yml](action.yml)
 
 The following parameters are always required:
 
- - API_HOST - Domain name of the ApiConnect instance where discovered APIs will be sent.<br /> &nbsp; &nbsp; &nbsp; Example : `d-j02.apiconnect.dev.automation.ibm.com`
+ - API_HOST - Domain name of the ApiConnect instance where discovered APIs will be sent.<br /> &nbsp; Example : `d-j02.apiconnect.dev.automation.ibm.com`
  - PROVIDER_ORG - The provider org name of the apiconnect manager 
- - API_FILES - One or more file names of the APIs to sync with apiconnect discovery repo separated by comma.<br /> &nbsp; &nbsp; &nbsp; Example : `gmail-api.json,gmail-api.yaml,mit-api.json,APIfolder/petstore-exp.json`
- - API_FOLDERS - One or more folder names containing APIs to sync with apiconnect discovery repo separated by comma. <br /> &nbsp; &nbsp; &nbsp; Example : `APIFiles,APIFolders`
+ - API_FILES - One or more file names of the APIs to sync with apiconnect discovery repo separated by comma.<br /> &nbsp; Example : `gmail-api.json,gmail-api.yaml,mit-api.json,APIfolder/petstore-exp.json`
+ - API_FOLDERS - One or more folder names containing APIs to sync with apiconnect discovery repo separated by comma. <br /> &nbsp; Example : `APIFiles,APIFolders`
  - apikey - An API Key can be obtained from the api-manager for the user who have access to post teh API.<br /> 
-&nbsp; &nbsp; &nbsp; Get the API key from the APIC Manager from the link in the following structure - `http://{api-host}/manager/auth/manager/sign-in/?from=TOOLKIT` (typically used with an OIDC user registry like IBM Verify). It is good practice to store any sensitive data like the apikey as a github action secret. See [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for more details. For the sample below the github secret should be called `apicApikey` as it will need to match the following templated value ${{ secrets.apicApikey }} 
+&nbsp; Get the API key from the APIC Manager from the link in the following structure - `http://{api-host}/manager/auth/manager/sign-in/?from=TOOLKIT` (typically used with an OIDC user registry like IBM Verify). It is good practice to store any sensitive data like the apikey as a github action secret. See [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for more details. For the sample below the github secret should be called `apicApikey` as it will need to match the following templated value ${{ secrets.apicApikey }} 
  - resync_check: Indicates if changes to the action like at initial creation should trigger a api-file sync. 
 
 The format of the API documents can be json or yaml. Among the parameters used, either API_FILES or API_FOLDERS needs to be supplied according to how the API documents sent. The APIs can be sent to the API connect discovery service in any one of the following type - single/multiple documents or folder/folders with APIs documents in it. Single and multiple documents will be supplied through API_FILES param and single and multiple folders with many API files inside will be supplied through API_FOLDERS param.<br /> 
