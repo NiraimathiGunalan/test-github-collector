@@ -84,7 +84,7 @@ jobs:
 
 The following parameters are always required:
 
- - API_HOST - Domain name of the ApiConnect instance where discovered APIs will be sent
+ - API_HOST - Domain name of the ApiConnect instance where discovered APIs will be sent.  
 Example : `d-j02.apiconnect.dev.automation.ibm.com`
  - PROVIDER_ORG - The provider org name of the apiconnect manager 
  - API_FILES - One or more file names of the APIs to sync with apiconnect discovery repo separated by comma
