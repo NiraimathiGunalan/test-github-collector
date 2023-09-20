@@ -88,8 +88,10 @@ The following parameters are always required:
  - PROVIDER_ORG - The provider org name of the apiconnect manager 
  - API_FILES - One or more file names of the APIs to sync with apiconnect discovery repo separated by comma.<br /> &nbsp; &nbsp; &nbsp; Example : `gmail-api.json,gmail-api.yaml,mit-api.json,APIfolder/petstore-exp.json`
  - API_FOLDERS - One or more folder names containing APIs to sync with apiconnect discovery repo separated by comma. <br /> &nbsp; &nbsp; &nbsp; Example : `APIFiles,APIFolders`
- - apikey - An API Key obtained from api-manager.{api-host}/manager/auth/manager/sign-in/?from=TOOLKIT (typically used with an OIDC user registry like IBM Verify).
-   It is good practice to store any sensitive data like the apikey as a github action secret. See [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for more details.  
+ - apikey - An API Key obtained from api-manager for the user who have access.<br /> 
+	Get the API key from the api connect Manager from the link in the following structure	http://{api-host}/manager/auth/manager/sign-in/?from=TOOLKIT (typically used with an OIDC user registry like IBM Verify).<br /> 
+   It is good practice to store any sensitive data like the apikey as a github action secret. <br /> 
+  See [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for more details.  <br /> 
    For the sample above the github secret should be called `apicApikey` as it will need to match the following templated value ${{ secrets.apicApikey }} 
  - resync_check: Indicates if changes to the action like at initial creation should trigger a api-file sync. 
 
