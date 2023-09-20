@@ -22,12 +22,12 @@ The following parameters are always required:
  - apikey - An API Key can be obtained from the api-manager for the user who have access to post teh API.<br /> 
 &nbsp; Get the API key from the APIC Manager from the link in the following structure - `http://{api-host}/manager/auth/manager/sign-in/?from=TOOLKIT` (typically used with an OIDC user registry like IBM Verify). It is good practice to store any sensitive data like the apikey as a github action secret. See [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for more details. For the sample below the github secret should be called `apicApikey` as it will need to match the following templated value ${{ secrets.apicApikey }} 
 
-The format of the API documents can be json or yaml. Among the parameters used, either API_FILES or API_FOLDERS needs to be supplied according to how the API documents sent. The APIs can be sent to the API connect discovery service in any one of the following type - single/multiple documents or folder/folders with APIs documents in it. Single and multiple documents will be supplied through API_FILES param and single and multiple folders with many API files inside will be supplied through API_FOLDERS param.<br /> 
+The format of the API documents can be json or yaml. Among the parameters used, either `API_FILES` or `API_FOLDERS` needs to be supplied according to how the API documents sent. The APIs can be sent to the API connect discovery service in any one of the following type - single/multiple documents or folder/folders with APIs documents in it. Single and multiple documents will be supplied through `API_FILES` param and single and multiple folders with many API files inside will be supplied through `API_FOLDERS` param.<br /> 
 To send the documents, create the workflow in your GitHub repository similar to the sample one below
 
 To create the workflow action in your github repository do the following
 1. Create a .github/workflows directory in your repository on GitHub if this directory does not already exist.
-2. In the .github/workflows directory, create a file named discover-api.yml.
+2. In the .github/workflows directory, create a file named **discover-api.yml**.
 3. Copy the yaml contents described below into the discover-api.yml file.
 4. Update the env variables and secret to match your environment.
 
@@ -94,7 +94,7 @@ In the above yml content, env and jobs are described to send API documents.<br /
 The job works as follows, where on a push commit to the github repo the specified `api_files` will be sent to the discovery service repo of the given `provider_org` at location `api_host` using the `api_key` to authenticate with the discovery service.<br /> 
 The job will only send the files to the discovery service in the case where any one of the mentioned file has been updated and changed in the commit,
 or when you first create or update the `discover-api.yml` file.<br /> 
-API_FILES can be replaced with API_FOLDERS when the entire folder/folders needs to be sent. The content can be modified according to the test requirement for sending the APIs
+`API_FILES` can be replaced with `API_FOLDERS` when the entire folder/folders needs to be sent. The content can be modified according to the test requirement for sending the APIs
 
 Please refer [here](https://github.com/ibm-apiconnect/apic-discovery-test) which have a working example of the test repo to be created like.
 
