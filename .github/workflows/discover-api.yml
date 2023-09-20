@@ -5,7 +5,7 @@ on: [pull_request, workflow_dispatch, push]
 env:
   API_HOST: d-j02.apiconnect.dev.automation.ibm.com
   PROVIDER_ORG: niraimathi
-  API_FILES: gmail-api.json,mit-api.json
+  API_FILES: gmail-api.json,mit-api.json, gmail-api.yaml,APIfolder/uber-api.json
 
 jobs:
   check_changes_job:
@@ -39,7 +39,7 @@ jobs:
     if: ${{ (contains(needs.check_changes_job.outputs.apifiles_env,needs.check_changes_job.outputs.changed_filename)) || (needs.check_changes_job.outputs.action_changed) || (needs.check_changes_job.outputs.folder_changed) }}
     steps:
     - uses: actions/checkout@v3
-    - uses: ruairi-hayes/apic-discovery-action@main
+    - uses: ibm-apiconnect/apic-discovery-action@main
       id: discover-apis
       with:
         api_host: ${{ env.API_HOST }}
