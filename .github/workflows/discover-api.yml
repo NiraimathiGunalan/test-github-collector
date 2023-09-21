@@ -32,7 +32,7 @@ jobs:
     - name: Check API Folders changed
       id: check_apifolders_changed
       run: |
-        for i in APIfolder,APIfolderTwo
+        for i in APIfolder APIfolderTwo
           do
             echo $i
           done
