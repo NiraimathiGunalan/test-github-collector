@@ -3,7 +3,7 @@
     "info": {
       "title": "Echo API",
       "x-ibm-name": "echo-api",
-      "version": "1.1.5"
+      "version": "1.1.6"
     },
     "host": "$(catalog.host)",
     "schemes": [],
