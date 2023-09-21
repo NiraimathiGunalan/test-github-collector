@@ -33,8 +33,8 @@ jobs:
     - name: Check API Folders changed
       id: check_apifolders_changed
       run: |
-        updated_folder = "${API_FOLDERS/,/" "}"
-        for i in ${updated_folder}
+        echo "${API_FOLDERS/,/" "}"
+        for i in ${API_FOLDERS/,/" "}
           do
             echo $i
           done
