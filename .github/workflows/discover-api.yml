@@ -35,7 +35,7 @@ jobs:
       run: |
         echo "$API_FOLDERS"
         echo "${API_FOLDERS}"
-        IFS=':'; arrIN=($API_FOLDERS); unset IFS;
+        IFS=','; arrIN=($API_FOLDERS); unset IFS;
         echo ${arrIN}
         for i in ${arrIN}
           do
