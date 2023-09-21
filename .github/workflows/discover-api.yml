@@ -36,7 +36,7 @@ jobs:
         echo "$API_FOLDERS"
         echo "${API_FOLDERS}"
         arrINN=(${API_FOLDERS//,/ })
-        echo $arrINN[1]
+        echo ${arrINN[1]}
         IFS=','; arrIN=($API_FOLDERS); unset IFS;
         echo ${arrIN}
         for i in ${arrINN}
