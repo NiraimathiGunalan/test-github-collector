@@ -6,7 +6,7 @@ env:
   API_HOST: d-j02.apiconnect.dev.automation.ibm.com
   PROVIDER_ORG: niraimathi
   API_FILES: gmail-api.json,mit-api.json,gmail-api.yaml,APIfolder/uber-api.json
-  API_FOLDERS: APIfolder,APIfolderTwo
+  API_FOLDERS: APIfolder
 
 jobs:
   check_changes_job:
@@ -37,7 +37,6 @@ jobs:
           do
            echo "folder_updates=folder_updates || $(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep $i | xargs)" >> $GITHUB_OUTPUT
           done
-        #echo "folder_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep $API_FOLDERS | xargs)" >> $GITHUB_OUTPUT
   run-discovery:
     runs-on: ubuntu-latest
     needs: [ check_changes_job ]
