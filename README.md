@@ -2,7 +2,7 @@ The Apic Discovery Test repo allows you to test the discovery action from [here]
 
 See [discover-api.yml](.github/workflows/discover-api.yml)
 
-The file has an example of sending the API documents in different ways to the host `d-j02.apiconnect.dev.automation.ibm.com` to the provider organisation name `niraimathi` when the [workflow file](.github/workflows/discover-api.yml) or any one of the mentioned API file content changes.
+The file has an example of sending the API documents in different ways to the host `d-j02.apiconnect.dev.automation.ibm.com` to the provider organisation name `niraimathi` when the [workflow file](.github/workflows/discover-api.yml) or any one of the mentioned API file content changes.<br /> 
 Different ways of sending the API documents are mentioned in the commented section 
 ```
 API_FILES: gmail-api.json
@@ -10,9 +10,9 @@ API_FILES: gmail-api.json,mit-api.json,gmail-api.yaml,APIfolder/uber-api.json
 API_FOLDERS: APIfolder
 API_FOLDERS: APIfolder,APIfolderTwo
 ```
-The job `check_changes_job` checks for the changes in the workflow file or mentioned API document and the job `run-discovery` sends the documents mentioned.
+The job `check_changes_job` checks for the changes in the workflow file or mentioned API document and the job `run-discovery` sends the documents mentioned.<br /> 
 The `run-discovery` job uses the apic-discovery-action repo main branch in the ibm-apiconnect organization
- - uses: ibm-apiconnect/apic-discovery-action@main 
+ - uses: ibm-apiconnect/apic-discovery-action@main <br /> 
 with the parameters supplied
 ```
 with:
