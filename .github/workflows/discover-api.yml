@@ -33,7 +33,7 @@ jobs:
       id: check_apifolders_changed
       run: |
         IFS=':'; arrIN=($API_FOLDERS); unset IFS;
-        echo $arrIN
+        echo ${arrIN}
         for i in APIfolder APIfolderTwo
           do
             echo $i
