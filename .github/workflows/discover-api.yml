@@ -34,7 +34,7 @@ jobs:
       run: |
         IFS=':'; arrIN=($API_FOLDERS); unset IFS;
         echo ${arrIN}
-        for i in APIfolder APIfolderTwo
+        for i in ${arrIN}
           do
             echo $i
           done
