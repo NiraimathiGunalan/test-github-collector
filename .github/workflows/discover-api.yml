@@ -32,6 +32,10 @@ jobs:
     - name: Check API Folders changed
       id: check_apifolders_changed
       run: |
+        for i in APIfolder,APIfolderTwo
+          do
+            echo $i
+          done
         echo "folder_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | grep $API_FOLDERS | xargs)" >> $GITHUB_OUTPUT
   run-discovery:
     runs-on: ubuntu-latest
