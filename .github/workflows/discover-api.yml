@@ -33,14 +33,7 @@ jobs:
     - name: Check API Folders changed
       id: check_apifolders_changed
       run: |
-        echo "$API_FOLDERS"
-        echo "${API_FOLDERS}"
-        echo "${API_FOLDERS/,/" "}" 
-        arrINN=(${API_FOLDERS//,/ })
-        echo ${arrINN[1]}
-        IFS=','; arrIN=($API_FOLDERS); unset IFS;
-        echo ${arrIN}
-        for i in ${arrINN}
+        for i in "${API_FOLDERS/,/" "}" 
           do
             echo $i
           done
