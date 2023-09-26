@@ -28,11 +28,10 @@ jobs:
         api_files: ${{ env.API_FILES }}
         else if: env.API_FOLDERS
         api_folders: ${{ env.API_FOLDERS }}
-        resync_check: ${{ needs.check_changes_job.outputs.action_changed && true || false }}
+        resync_check: ${{ true }}
         git_diff: ${{ steps.difference-output.outputs.action_updates }}
     - name: Display the action-result
       run: |
         echo "Result of the action: ${{ steps.discover-apis.outputs.action-result }}"
-        echo "Action_updated: ${{ steps.difference-output.outputs.action_updates }}"
         echo "End"          
 
