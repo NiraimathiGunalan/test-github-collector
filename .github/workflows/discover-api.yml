@@ -32,5 +32,6 @@ jobs:
     - name: Display the action-result
       run: |
         echo "Result of the action: ${{ steps.discover-apis.outputs.action-result }}"
+        echo "Action updates: ${{steps.difference_output.outputs.action_updates }}"
         echo "End"          
 
