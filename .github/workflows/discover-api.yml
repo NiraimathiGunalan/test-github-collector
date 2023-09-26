@@ -11,11 +11,11 @@ jobs:
   run-discovery:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
     - name: Difference
       id: difference-output
       run: |
         echo "action_updates=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | xargs)" >> $GITHUB_OUTPUT
-    - uses: actions/checkout@v3
     - uses: ibm-apiconnect/apic-discovery-action@ng/main
       id: discover-apis
       with:
