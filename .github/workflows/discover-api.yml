@@ -24,7 +24,7 @@ jobs:
         else if: env.API_FOLDERS
         api_folders: ${{ env.API_FOLDERS }}
         resync_check: ${{ needs.check_changes_job.outputs.action_changed && true || false }}
-        git_diff: $(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | xargs)
+        git_diff: ${{git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }} | xargs}}
     - name: Display the action-result
       run: |
         echo "Result of the action: ${{ steps.discover-apis.outputs.action-result }}"
